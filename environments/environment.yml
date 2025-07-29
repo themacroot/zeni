@@ -1,0 +1,27 @@
+name: zeni-env
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - numpy
+  - pydantic
+  - uvicorn
+  - fastapi
+  - sentence-transformers
+  - chromadb
+  - langchain
+  - tqdm
+  - openai
+  - pip:
+      - llama-cpp-python
+      - huggingface_hub
+      - accelerate
+      - bitsandbytes
+      - transformers
+      - aiohttp
+      - python-multipart
+      - httpx
+      - nltk
+
