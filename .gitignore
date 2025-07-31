@@ -1,5 +1,6 @@
 # Ignore quantized LLM models
 llm_server/quantized_models/
+llm_server/knowledge_base/resource/
 
 # Python
 __pycache__/
@@ -28,3 +29,4 @@ yarn-error.log
 # Others
 *.log
 *.bak
+*.pdf
