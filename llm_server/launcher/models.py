@@ -1,8 +1,7 @@
 from llama_cpp import Llama
-from config import Settings
-from typing import Generator
+from llm_server.launcher.utils.config import Settings
 from typing import Generator, List, Dict
-from logger import logger
+from llm_server.launcher.utils.logger import logger
 
 def load_model(settings: Settings):
     if settings.model_type == "llama-cpp":

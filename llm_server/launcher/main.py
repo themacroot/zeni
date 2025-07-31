@@ -1,18 +1,18 @@
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.responses import StreamingResponse
-from config import settings
-from logger import logger
-from models import load_model, generate_stream
+from llm_server.launcher.utils.config import settings
+from llm_server.launcher.utils.logger import logger
+from llm_interface import LLMInterface
 import uvicorn
 
 app = FastAPI(title="LLM Server", version="1.0.0")
 
-# Load the appropriate model based on config
+# Load LLM interface (which internally picks the correct backend)
 try:
-    llm = load_model(settings)
-    logger.info(f"Loaded model: {settings.model_type} from {settings.model_path}")
+    llm = LLMInterface()
+    logger.info(f"Loaded backend: {settings.model_type} using model: {settings.model_path}")
 except Exception as e:
-    logger.exception("Failed to load model")
+    logger.exception("Failed to initialize LLM interface")
     raise e
 
 @app.post("/generate")
@@ -20,14 +20,13 @@ async def generate(request: Request):
     try:
         data = await request.json()
         messages = data.get("context", [])
-        prompt = data.get("prompt", "").strip()
 
         if not messages:
-            raise HTTPException(status_code=400, detail="Missing 'prompt' in request body")
+            raise HTTPException(status_code=400, detail="Missing 'context' in request body")
 
-        logger.info(f"Received prompt of length {len(messages)}")
+        logger.info(f"Received context with {len(messages)} messages")
 
-        return StreamingResponse(generate_stream(llm, messages), media_type="text/plain")
+        return StreamingResponse(llm.generate_stream(messages), media_type="text/plain")
 
     except Exception as e:
         logger.exception("Unhandled exception during generation")

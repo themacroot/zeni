@@ -50,6 +50,11 @@ zeni /
 │
 └── README.md
 
+Sample curl 
+
+
+curl --location 'http://localhost:8001/    generate' \--header 'Content-Type: application/json' \--data '{  "context": [    {"role": "user", "content": "Rewrite         professionally glad to meet you         today mark, hope to connect in         future to discuss further on the         project "}  ]}'
+
 
 Future work 
 
