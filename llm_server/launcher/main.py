@@ -19,10 +19,10 @@ except Exception as e:
 async def generate(request: Request):
     try:
         data = await request.json()
-        messages = data.get("context", [])
+        messages = data.get("prompt", [])
 
         if not messages:
-            raise HTTPException(status_code=400, detail="Missing 'context' in request body")
+            raise HTTPException(status_code=400, detail="Missing 'prompt' in request body")
 
         logger.info(f"Received context with {len(messages)} messages")
 

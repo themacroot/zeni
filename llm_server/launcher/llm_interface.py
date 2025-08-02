@@ -15,5 +15,5 @@ class LLMInterface:
         else:
             raise ValueError(f"Unsupported backend type: {backend_type}")
 
-    def generate_stream(self, messages: List[Dict[str, str]]) -> Generator[str, None, None]:
+    def generate_stream(self, messages: str) -> Generator[str, None, None]:
         return self.backend.generate_stream(messages)
