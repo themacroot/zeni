@@ -36,7 +36,7 @@ def ingest_folder_to_qdrant(
     for file_path in root_dir.rglob("*.*"):
         if file_path.name in SKIP_FILES:
             continue
-        if file_path.suffix.lower() not in [".pdf", ".docx", ".txt", ".jpg", ".png"]:
+        if file_path.suffix.lower() not in [".pdf", ".docx", ".txt", ".jpg", ".png", ".xlsx"]:
             continue
 
         file_hash = hash_tracker.compute_file_hash(file_path)
@@ -75,6 +75,6 @@ if __name__ == "__main__":
     ingest_folder_to_qdrant(
         root_dir=Path("../resource/"),
         qdrant_url="http://localhost:6333",
-        qdrant_collection="regulatory_docs",
+        qdrant_collection="faq",
         batch_mode=False,
     )

@@ -8,4 +8,4 @@ class ChatMessage(BaseModel):
 
 class RAGChatRequest(BaseModel):
     context: List[ChatMessage]
-    chat_type: Literal["rbi", "internal", "hr", "it"]
+    chat_type: Literal["rbi", "internal", "hr", "it","faq"]
