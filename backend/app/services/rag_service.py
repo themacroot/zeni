@@ -1,6 +1,6 @@
 # app/services/rag_pipeline.py
 from typing import List, Dict
-from knowledge_base.retriever.qdrant_retriver import query_qdrant
+from backend.app.services.qdrant_retriver import query_qdrant
 from backend.app.services.llm_service import call_llm
 from backend.app.models.chat import ChatMessage
 from backend.app.services.semantic_trending_service import record_question
